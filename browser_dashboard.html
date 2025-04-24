@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Browser Environment Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Google Font Import */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+      transition: background-color 0.5s ease;
+    }
+
+    header {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 4px 0;
+      font-size: 15px;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #2c3e50;
+      font-size: 22px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 6px;
+    }
+
+    .info-item {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    button {
+      margin: 6px 6px 6px 0;
+      padding: 10px 16px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    @media (max-width: 600px) {
+      header, section {
+        padding: 15px;
+      }
+
+      button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Profile Header -->
+  <header>
+    <h1>Personal & Course Profile</h1>
+    <p><strong>Complete Name:</strong> Ricky Jr. M. Banks </p>
+    <p><strong>Sex:</strong> Male</p>
+    <p><strong>Address:</strong> Goa Camarines Sur</p>
+    <p><strong>Course, Year, and Section:</strong> BSIT 2A</p>
+    <p><strong>Name of School:</strong> Partido State University</p>
+    <p><strong>Semester and Academic Year:</strong> 2nd Semester, AY 2024-2025</p>
+    <p><strong>Subject Code and Title:</strong> IT2A_PF2</p>
+    <p><strong>Name of Subject Instructor:</strong> RJ F. Abio</p>
+  </header>
+
+  <main>
+    <!-- Browser Info -->
+    <section>
+      <h2>Browser Information</h2>
+      <div class="info-item" id="browserName"></div>
+      <div class="info-item" id="platform"></div>
+      <div class="info-item" id="javaEnabled"></div>
+      <div class="info-item" id="screenResolution"></div>
+      <div class="info-item" id="availableScreenSize"></div>
+      <div class="info-item" id="colorDepth"></div>
+    </section>
+
+    <!--  Page Info -->
+    <section>
+      <h2>Page Information & Controls</h2>
+      <div class="info-item" id="currentURL"></div>
+      <div class="info-item" id="hostname"></div>
+      <div class="info-item" id="pageTitle"></div>
+      <button onclick="changeTitle()">Change Page Title</button>
+    </section>
+
+    <!--  Navigation -->
+    <section>
+      <h2>Navigation Controls</h2>
+      <button onclick="location.reload()">🔄 Reload Page</button>
+      <button onclick="location.href='https://www.example.com'">🌐 Go to Example.com</button>
+      <button onclick="history.back()">⬅️ Back</button>
+      <button onclick="history.forward()">➡️ Forward</button>
+    </section>
+  </main>
+
+  <script>
+    // --- Browser and Screen Info ---
+    document.getElementById('browserName').textContent = `Browser: ${navigator.appName} ${navigator.appVersion}`;
+    document.getElementById('platform').textContent = `Platform: ${navigator.platform}`;
+    document.getElementById('javaEnabled').textContent = `Java Enabled: ${navigator.javaEnabled() ? 'Yes' : 'No'}`;
+    document.getElementById('screenResolution').textContent = `Screen Resolution: ${screen.width} x ${screen.height}`;
+    document.getElementById('availableScreenSize').textContent = `Available Screen Size: ${screen.availWidth} x ${screen.availHeight}`;
+    document.getElementById('colorDepth').textContent = `Color Depth: ${screen.colorDepth} bits`;
+
+    // --- Page Info and Title ---
+    document.getElementById('currentURL').textContent = `Current URL: ${location.href}`;
+    document.getElementById('hostname').textContent = `Hostname: ${location.hostname}`;
+    document.getElementById('pageTitle').textContent = `Page Title: ${document.title}`;
+
+    function changeTitle() {
+      const newTitle = prompt("Enter a new page title:");
+      if (newTitle) {
+        document.title = newTitle;
+        document.getElementById('pageTitle').textContent = `Page Title: ${newTitle}`;
+      }
+    }
+
+    // --- Dynamic Background Color ---
+    function updateBackgroundColor() {
+      const width = window.innerWidth;
+      if (width < 600) {
+        document.body.style.backgroundColor = 'lightblue';
+      } else if (width >= 600 && width < 992) {
+        document.body.style.backgroundColor = 'lightgreen';
+      } else {
+        document.body.style.backgroundColor = 'orange';
+      }
+    }
+
+    window.addEventListener('resize', updateBackgroundColor);
+    window.addEventListener('load', updateBackgroundColor);
+  </script>
+
+</body>
+</html>
